@@ -492,7 +492,7 @@
         }
 
         function isBlue(r, g, b) {
-            return b > 100 && b > r * 1.5 && b > g * 1.2;
+            return (b - Math.max(r, g)) > 35;
         }
 
         function formatPeriods(hours) {
@@ -560,6 +560,11 @@
             errorEl.classList.add('show');
         }
 
+        ctx.strokeStyle = "red";
+        ctx.lineWidth = 2;
+        ctx.strokeRect(xStart, yStart, COL_WIDTH, ROW_HEIGHT);
+
+
         // Зберігаємо обрану чергу
         document.getElementById('queue').addEventListener('change', (e) => {
             localStorage.setItem('selectedQueue', e.target.value);
@@ -576,5 +581,6 @@
 </body>
 
 </html>
+
 
 
