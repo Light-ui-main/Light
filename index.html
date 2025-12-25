@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#2563eb">
     <meta name="description" content="Графік відключень світла для Хмельницької області">
-    <link rel="shortcut icon" href="unnamed.webp" type="image/x-icon">
     <title>⚡ Графік відключень</title>
     <style>
         * {
@@ -334,11 +333,10 @@
         // ЗАМІНІТЬ НА СВІЙ після деплою!
         const WORKER_URL = 'https://grafik-parser.p87717891.workers.dev';
 
-        const TABLE_START_Y = 170;   // таблица начинается выше
-        const ROW_HEIGHT = 44;      // строки ниже
-        const FIRST_COL_X = 160;    // первая колонка часов левее
-        const COL_WIDTH = 42;       // часы уже
-
+        const TABLE_START_Y = 279;
+        const ROW_HEIGHT = 52;
+        const COL_WIDTH = 57;
+        const FIRST_COL_X = 185;
 
         const QUEUES = {
             1: ["1.1", "1.2"],
@@ -492,7 +490,7 @@
         }
 
         function isBlue(r, g, b) {
-            return (b - Math.max(r, g)) > 35;
+            return b > 100 && b > r * 1.5 && b > g * 1.2;
         }
 
         function formatPeriods(hours) {
@@ -560,11 +558,6 @@
             errorEl.classList.add('show');
         }
 
-        ctx.strokeStyle = "red";
-        ctx.lineWidth = 2;
-        ctx.strokeRect(xStart, yStart, COL_WIDTH, ROW_HEIGHT);
-
-
         // Зберігаємо обрану чергу
         document.getElementById('queue').addEventListener('change', (e) => {
             localStorage.setItem('selectedQueue', e.target.value);
@@ -579,8 +572,4 @@
         });
     </script>
 </body>
-
 </html>
-
-
-
